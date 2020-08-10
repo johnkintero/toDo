@@ -9,18 +9,25 @@ export class ActividadesService {
   listas : Lista[] = [];
 
   constructor() { 
-    const LISTA1 = new Lista('Recolectar piedras');
-    const LISTA2 = new Lista('Héroes');
-    this.listas.push(LISTA1,LISTA2);
+
+    this.cargarStorage();
+    // const LISTA1 = new Lista('Recolectar piedras');
+    // const LISTA2 = new Lista('Héroes');
+    // this.listas.push(LISTA1,LISTA2);
   }
 
   AgregarLista(nombre:string): number{
     console.log('Llego al servicio');
-    let newList : Lista =  null;
-      newList = new Lista(nombre);
+    const newList = new Lista(nombre);
       this.listas.push(newList);
+      this.guardarStorage();
       
-    return this.listas.find(lista => lista.titulo == nombre).id;
+    return newList.id; 
+  }
+
+  ObtenerLista(id: string | number){
+    id = Number(id);
+    return this.listas.find( listaData => listaData.id === id );
   }
 
   //crea un item en el localstorage del cliente que se puede ver con las herramientas de desarollador
@@ -32,6 +39,9 @@ export class ActividadesService {
   cargarStorage(){
     if ( localStorage.getItem('data')) {
       this.listas = JSON.parse( localStorage.getItem('data'));
+    }
+    else{
+      this.listas = [];
     }
   }
 

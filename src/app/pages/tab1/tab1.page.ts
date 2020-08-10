@@ -39,7 +39,7 @@ export class Tab1Page {
           text:'Crear',
           handler:(data)=>{
             if (data.Nombrelista.length > 0) {
-              this._actividadesService.AgregarLista(data.Nombrelista);
+             this.agregarItemsLista(this._actividadesService.AgregarLista(data.Nombrelista));
             }
             else{ return; }
           }
@@ -49,8 +49,8 @@ export class Tab1Page {
     await alert.present();
   }
 
-  agregarLista(){
-    this.router.navigateByUrl('/tabs/tab1/agregar');
+  agregarItemsLista( idLista : number){
+    this.router.navigateByUrl(`/tabs/tab1/agregar/${idLista}`);
   }
 
 }
