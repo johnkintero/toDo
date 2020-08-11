@@ -14,12 +14,7 @@
   </ion-header>
 
   <app-explore-container name="Tab 1 page"></app-explore-container> -->
-  <ion-list color="primary">
-    <ion-item *ngFor="let act of _actividadesService.listas" detail color="primary" (click)= "agregarItemsLista(act.id)">
-      <ion-label>{{ act.titulo }}</ion-label>
-      <ion-note slot="end" color="secondary">{{ act.items.length }} items</ion-note>
-    </ion-item>
-  </ion-list>
+  <app-listas [terminada]="false"></app-listas>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="secondary" (click)="promptNuevaLista()">
